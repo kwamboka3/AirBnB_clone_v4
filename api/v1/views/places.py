@@ -177,4 +177,6 @@ def places_search():
         d.pop('amenities', None)
         places.append(d)
 
+    # print(places)
+
     return jsonify(places)

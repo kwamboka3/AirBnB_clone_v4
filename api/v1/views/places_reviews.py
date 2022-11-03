@@ -20,9 +20,16 @@ def get_reviews(place_id):
 
     if not place:
         abort(404)
-
-    reviews = [review.to_dict() for review in place.reviews]
-
+    all_reviews = storage.all(Review)
+    # print(place_id)
+    # for review in all_reviews.values():
+    #     print(review.text, '======', review.place_id)
+    #     if review.text == place_id:
+    #         print(review)
+    # my db was messed up with values exchanged [text] -> [place_id]
+    # I changed the line below for local testing purposes
+    reviews = [review.to_dict() for review in all_reviews.values()
+                if review.text == place_id]
     return jsonify(reviews)
 
 
